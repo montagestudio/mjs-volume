@@ -249,7 +249,15 @@ exports.SceneView = Component.specialize( {
 
     translateComposer: { value: null, writable: true },
 
-    scaleFactor: { value: (window.devicePixelRatio || 1), writable: true},
+    scaleFactor: {
+        get: function() {
+            if (this._isiPad()) {
+                return 1;
+            }
+
+            return window.devicePixelRatio || 1;
+        }
+    },
 
     selectedNode: { value: null, writable:true },
 
@@ -638,6 +646,12 @@ exports.SceneView = Component.specialize( {
     getRelativePositionToCanvas: {
         value: function(event) {
             return dom.convertPointFromPageToNode(this.canvas, Point.create().init(event.pageX, event.pageY));
+        }
+    },
+    
+    _isiPad: {
+        value: function() {
+            return !!navigator.userAgent.match(/iPad/i);
         }
     },
 
