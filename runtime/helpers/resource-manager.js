@@ -721,22 +721,24 @@ exports.WebGLTFResourceManager = Object.create(Object, {
 
     _elementSizeForGLType: {
         value: function(glType) {
+            var GL = WebGLRenderingContext.prototype;
+
             switch (glType) {
-                case WebGLRenderingContext.FLOAT :
+                case GL.FLOAT :
                     return Float32Array.BYTES_PER_ELEMENT;
-                case WebGLRenderingContext.UNSIGNED_BYTE:
+                case GL.UNSIGNED_BYTE:
                     return Uint8Array.BYTES_PER_ELEMENT;
-                case WebGLRenderingContext.UNSIGNED_SHORT:
+                case GL.UNSIGNED_SHORT:
                     return Uint16Array.BYTES_PER_ELEMENT;
-                case WebGLRenderingContext.FLOAT_VEC2:
+                case GL.FLOAT_VEC2:
                     return Float32Array.BYTES_PER_ELEMENT * 2;
-                case WebGLRenderingContext.FLOAT_VEC3:
+                case GL.FLOAT_VEC3:
                     return Float32Array.BYTES_PER_ELEMENT * 3;
-                case WebGLRenderingContext.FLOAT_VEC4:
+                case GL.FLOAT_VEC4:
                     return Float32Array.BYTES_PER_ELEMENT * 4;
-                case WebGLRenderingContext.FLOAT_MAT4:
+                case GL.FLOAT_MAT4:
                     return Float32Array.BYTES_PER_ELEMENT * 16;
-                case WebGLRenderingContext.FLOAT_MAT3:
+                case GL.FLOAT_MAT3:
                     return Float32Array.BYTES_PER_ELEMENT * 9;
                 default:
                     return null;
