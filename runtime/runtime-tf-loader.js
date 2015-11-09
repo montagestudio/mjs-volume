@@ -168,8 +168,8 @@ exports.RuntimeTFLoader = Object.create(glTFParser, {
                         parameter.value = values[parameterSid];
                         var paramValue = null;
                         switch (parameter.type) {
-                            case WebGLRenderingContext.SAMPLER_CUBE:
-                            case WebGLRenderingContext.SAMPLER_2D:
+                            case WebGLRenderingContext.prototype.SAMPLER_CUBE:
+                            case WebGLRenderingContext.prototype.SAMPLER_2D:
                             {
                                 var entry = this.getEntry(parameter.value);
                                 if (entry) {
@@ -253,7 +253,7 @@ exports.RuntimeTFLoader = Object.create(glTFParser, {
             for (var i = 0 ; i < primitivesDescription.length ; i++) {
                 var primitiveDescription = primitivesDescription[i];
 
-                if (primitiveDescription.primitive === WebGLRenderingContext.TRIANGLES) {
+                if (primitiveDescription.primitive === WebGLRenderingContext.prototype.TRIANGLES) {
                     var primitive = Object.create(Primitive).init();
 
                     //read material
@@ -544,6 +544,8 @@ exports.RuntimeTFLoader = Object.create(glTFParser, {
                 this._animations = [];
             }
 
+            var GL = WebGLRenderingContext.prototype;
+
             var animation = Object.create(KeyframeAnimation).initWithDescription(description);
             animation.id =  entryID;
             this.storeEntry(entryID, animation, description);
@@ -555,16 +557,16 @@ exports.RuntimeTFLoader = Object.create(glTFParser, {
                 parameterDescription = this.getEntry(parameterUID).entry;
                 //we can avoid code below if we add byteStride
                 switch (parameterDescription.type) {
-                    case WebGLRenderingContext.FLOAT_VEC4:
+                    case GL.FLOAT_VEC4:
                         componentsPerAttribute = 4;
                         break;
-                    case WebGLRenderingContext.FLOAT_VEC3:
+                    case GL.FLOAT_VEC3:
                         componentsPerAttribute = 3;
                         break;
-                    case WebGLRenderingContext.FLOAT_VEC2:
+                    case GL.FLOAT_VEC2:
                         componentsPerAttribute = 2;
                         break;
-                    case WebGLRenderingContext.FLOAT:
+                    case GL.FLOAT:
                         componentsPerAttribute = 1;
                         break;
                     default: {

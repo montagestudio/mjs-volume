@@ -418,11 +418,11 @@ exports.WebGLRenderer = Object.create(Object.prototype, {
     textureDelegate: {
         value: {
             getGLFilter: function(filter) {
-                return filter == null ? WebGLRenderingContext.LINEAR : filter;
+                return filter == null ? WebGLRenderingContext.prototype.LINEAR : filter;
             },
 
             getGLWrapMode: function(wrapMode) {
-                return wrapMode == null ? WebGLRenderingContext.REPEAT : wrapMode;
+                return wrapMode == null ? WebGLRenderingContext.prototype.REPEAT : wrapMode;
             },
 
             handleError: function(errorCode, info) {
