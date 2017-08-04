@@ -545,7 +545,9 @@ exports.RuntimeTFLoader = Object.create(glTFParser, {
             var parameters = {};
             Object.keys(description.parameters).forEach( function(parameterSID) {
                 var parameterUID = description.parameters[parameterSID];
-                parameterDescription = this.getEntry(parameterUID).entry;
+                parameterDescription = typeof parameterUID === "string" 
+                    ? this.getEntry(parameterUID).entry 
+                    : parameterUID;
                 //we can avoid code below if we add byteStride
                 switch (parameterDescription.type) {
                     case "SCALAR":
